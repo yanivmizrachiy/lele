@@ -11,6 +11,10 @@ body {
 }
 
 @media print {
+  @page {
+    size: A4;
+    margin: 15mm 15mm 15mm 15mm;
+  }
   body {
     background-color: white !important;
     color: black !important;
@@ -21,12 +25,16 @@ body {
   .print-page-break {
     page-break-after: always !important;
     break-after: page !important;
-    margin-top: 2rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100%;
+    page-break-inside: avoid !important;
   }
   .print-card {
-    border: 1px solid #d1d5db !important;
+    border: none !important;
     box-shadow: none !important;
     background: white !important;
-    padding: 2rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 }
