@@ -1189,34 +1189,31 @@ export default function App() {
         </div>
 
         {/* Digital Worksheet Sheets Preview */}
-        <div id="worksheet-pages" className="space-y-6 print:space-y-0">
+        <div id="worksheet-pages" className="space-y-8 md:space-y-12 print:space-y-0 flex flex-col items-center">
           {questions.map((q, idx) => (
             <section
               key={q.id}
-              className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm relative print:border-none print:shadow-none print:p-0 print:m-0 print-page-break print:min-h-screen flex flex-col justify-between"
+              className="bg-white border border-slate-200/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] relative print:border-none print:shadow-none print:p-0 print:m-0 print-page-break print:min-h-screen flex flex-col justify-between w-full md:w-[21cm] md:min-h-[29.7cm] p-6 md:p-[1.5cm] rounded-[24px] md:rounded-none overflow-hidden"
             >
               <div>
                 {/* Academic Header in Ministry of Education workbook style */}
-                <div className="border-b-2 border-slate-900 pb-3 print:pb-1.5 mb-5 print:mb-3 flex justify-between items-start">
+                <div className="-mx-6 md:-mx-[1.5cm] px-6 md:px-[1.5cm] border-b-2 border-slate-905 pb-3 print:pb-1.5 mb-5 print:mb-3 flex justify-between items-center bg-white print:border-b-2 select-none">
                   <div className="text-right">
-                    <span className="text-[10px] uppercase font-black tracking-widest text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md inline-block mb-1">
-                      דף עבודה נושאי • אי-ודאות והסתברות
+                    <span className="text-sm md:text-base font-black text-slate-900 leading-none">
+                      תחום אי ודאות - כיתה ז'
                     </span>
-                    <h2 className="text-lg md:text-xl font-black text-slate-900 leading-tight">
-                      שאלה {q.id}: {q.title}
-                    </h2>
                   </div>
-                  <div className="text-left shrink-0 no-print flex items-center gap-1">
+                  <div className="flex items-center gap-2">
                     <button 
                       onClick={() => setEditMode(editMode === q.id ? null : q.id)}
-                      className="text-slate-500 hover:text-slate-800 p-1.5 rounded-lg border hover:bg-slate-50 transition"
+                      className="text-slate-500 hover:text-slate-800 p-1.5 rounded-lg border hover:bg-slate-50 transition no-print shrink-0"
                       title="ערוך נוסח שאלה באופן מקומי"
                     >
                       <Edit2 size={13} />
                     </button>
-                    <span className="text-[10px] md:text-xs font-black bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-xl text-slate-700">
-                      עמוד {idx + 1}
-                    </span>
+                    <div className="w-8 h-8 rounded-full border-2 border-slate-900 flex items-center justify-center font-black text-sm text-slate-900 bg-white">
+                      {q.id}
+                    </div>
                   </div>
                 </div>
 
@@ -1286,23 +1283,24 @@ export default function App() {
 
           {/* Optional Page: Teacher Solutions Manual / Answer Keys */}
           {printSolutions && (
-            <section className="bg-white border border-green-200 rounded-3xl p-6 md:p-8 shadow-sm relative print:border-none print:shadow-none print:p-0 print:m-0 print-page-break print:min-h-screen flex flex-col justify-between">
+            <section className="bg-white border border-slate-200/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] relative print:border-none print:shadow-none print:p-0 print:m-0 print-page-break print:min-h-screen flex flex-col justify-between w-full md:w-[21cm] md:min-h-[29.7cm] p-6 md:p-[1.5cm] rounded-[24px] md:rounded-none overflow-hidden">
               <div>
-                <div className="border-b-2 border-green-800 pb-3 mb-5 flex justify-between items-center">
+                <div className="-mx-6 md:-mx-[1.5cm] px-6 md:px-[1.5cm] border-b-2 border-green-800 pb-3 mb-5 flex justify-between items-center bg-white print:border-b-2 select-none">
                   <div className="text-right">
-                    <span className="text-[10px] uppercase font-black text-green-700 bg-green-50 px-2 py-1 rounded inline-block mb-1">
-                      למורה בלבד
+                    <span className="text-sm md:text-base font-black text-green-950 leading-none font-sans">
+                      תחום אי ודאות - מפתח תשובות למורה (כיתה ז')
                     </span>
-                    <h2 className="text-lg md:text-xl font-black text-green-900 leading-none">
-                      מפתח תשובות והסברים לפעילות (מחוון הערכה)
-                    </h2>
                   </div>
-                  <div className="text-left shrink-0">
-                    <span className="text-[10px] md:text-xs font-black bg-green-50 border border-green-200 px-3 py-1.5 rounded-xl text-green-700">
-                      דף תשובות מפורט
-                    </span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full border-2 border-green-800 flex items-center justify-center font-black text-xs text-green-800 bg-white">
+                      מ'
+                    </div>
                   </div>
                 </div>
+
+                <h2 className="text-base md:text-lg font-black text-green-950 mb-4 text-right">
+                  מחוון הערכה והסברים לפעילות מפורטת
+                </h2>
 
                 <div className="space-y-4 text-right">
                   {questions.map((q) => (
@@ -1323,8 +1321,8 @@ export default function App() {
 
               <div>
                 <div className="mt-6 pt-3 border-t border-slate-100 flex justify-between items-center text-[9px] text-slate-400 select-none">
-                  <span>משוב פדגוגי והדרכה – הערכת תפקודי למידה</span>
-                  <span>עמוד תשובות ומחוון</span>
+                  <span>תחום אי ודאות - כיתה ז'</span>
+                  <span>מפתח תשובות למורה</span>
                 </div>
               </div>
             </section>
