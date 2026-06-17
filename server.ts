@@ -48,6 +48,7 @@ async function startServer() {
       { localPath: "src/data.ts", repoPath: "src/data.ts" },
       { localPath: "src/App.tsx", repoPath: "src/App.tsx" },
       { localPath: "README.md", repoPath: "README.md" },
+      { localPath: "RULES.md", repoPath: "RULES.md" },
     ];
 
     try {
