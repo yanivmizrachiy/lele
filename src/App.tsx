@@ -168,6 +168,24 @@ const VehiclesSvg = () => {
           <div className="flex flex-col items-center w-full animate-fade-in">
             <span className="text-[8px] font-extrabold text-blue-600 mb-1">דיאגרמת עמודות תקנית (נכונה)</span>
             <svg width="240" height="110" viewBox="0 0 240 110">
+              <defs>
+                <linearGradient id="carsGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#60a5fa" />
+                  <stop offset="100%" stopColor="#2563eb" />
+                </linearGradient>
+                <linearGradient id="bikesGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#fbbf24" />
+                  <stop offset="100%" stopColor="#d97706" />
+                </linearGradient>
+                <linearGradient id="busesGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#34d399" />
+                  <stop offset="100%" stopColor="#059669" />
+                </linearGradient>
+                <linearGradient id="trucksGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#c084fc" />
+                  <stop offset="100%" stopColor="#7c3aed" />
+                </linearGradient>
+              </defs>
               <line x1="30" y1="85" x2="220" y2="85" stroke="#1e293b" strokeWidth="1.2" />
               <line x1="30" y1="10" x2="30" y2="85" stroke="#1e293b" strokeWidth="1.2" />
               {[0, 20, 40, 60].map(v => {
@@ -182,18 +200,18 @@ const VehiclesSvg = () => {
               })}
               {/* Bars */}
               {[
-                { name: "מכוניות", val: 60, fill: "#3b82f6" },
-                { name: "אופניים", val: 30, fill: "#f59e0b" },
-                { name: "אוטובוס", val: 10, fill: "#10b981" },
-                { name: "משאיות", val: 20, fill: "#a855f7" }
+                { name: "מכוניות", val: 60, fill: "url(#carsGrad)", border: "#1d4ed8" },
+                { name: "אופניים", val: 30, fill: "url(#bikesGrad)", border: "#b45309" },
+                { name: "אוטובוס", val: 10, fill: "url(#busesGrad)", border: "#047857" },
+                { name: "משאיות", val: 20, fill: "url(#trucksGrad)", border: "#6b21a8" }
               ].map((bar, i) => {
                 const x = 45 + i * 42;
                 const h = bar.val * 1.1;
                 return (
                   <g key={bar.name}>
-                    <rect x={x} y={85 - h} width="22" height={h} fill={bar.fill} rx="2" stroke={bar.fill} strokeWidth="1" />
+                    <rect x={x} y={85 - h} width="22" height={h} fill={bar.fill} rx="2.5" stroke={bar.border} strokeWidth="1" className="drop-shadow-sm transition-all duration-300 hover:brightness-105" />
                     <text x={x + 11} y="94" fontSize="6.5" fontWeight="bold" fill="#334155" textAnchor="middle">{bar.name}</text>
-                    <text x={x + 11} y={85 - h - 3} fontSize="7" fontWeight="black" fill="#0f172a" textAnchor="middle">{bar.val}</text>
+                    <text x={x + 11} y={85 - h - 3} fontSize="7.5" fontWeight="black" fill="#0f172a" textAnchor="middle">{bar.val}</text>
                   </g>
                 );
               })}
@@ -838,16 +856,31 @@ const StudyTimeSvg = () => (
 );
 
 const PisaHitsSvg = () => (
-  <div className="flex flex-col items-center justify-center my-2 p-2 bg-slate-50 border border-slate-100 rounded-2xl select-none w-full max-w-sm">
-    <svg width="240" height="120" viewBox="0 0 240 120" className="bg-white rounded p-1 border">
-      <line x1="30" y1="100" x2="230" y2="100" stroke="#475569" strokeWidth="1.5" />
-      <line x1="30" y1="10" x2="30" y2="100" stroke="#475569" strokeWidth="1.5" />
+  <div className="flex flex-col items-center justify-center my-2 p-2 bg-slate-50 border border-slate-200/60 rounded-2xl select-none w-full max-w-sm gap-2 shadow-sm">
+    <svg width="240" height="120" viewBox="0 0 240 120" className="bg-white rounded-xl p-1 border border-slate-100 shadow-inner">
+      <defs>
+        <linearGradient id="indiansGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#a855f7" />
+          <stop offset="100%" stopColor="#6b21a8" />
+        </linearGradient>
+        <linearGradient id="barcodezGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#f43f5e" />
+          <stop offset="100%" stopColor="#be123c" />
+        </linearGradient>
+        <linearGradient id="lonelinessGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#0ea5e9" />
+          <stop offset="100%" stopColor="#0369a1" />
+        </linearGradient>
+      </defs>
+      
+      <line x1="30" y1="100" x2="230" y2="100" stroke="#0f172a" strokeWidth="1.2" />
+      <line x1="30" y1="10" x2="30" y2="100" stroke="#0f172a" strokeWidth="1.2" />
       {[0, 500, 1000, 1500, 2000].map((v, i) => {
         const y = 100 - i * 20;
         return (
           <g key={v}>
-            <line x1="26" y1={y} x2="30" y2={y} stroke="#475569" />
-            <text x="22" y={y + 3} fontSize="7" fill="#475569" textAnchor="end">{v}</text>
+            <line x1="26" y1={y} x2="30" y2={y} stroke="#0f172a" strokeWidth="0.8" />
+            <text x="22" y={y + 3} fontSize="7.5" fill="#475569" fontWeight="bold" textAnchor="end">{v.toLocaleString()}</text>
             <line x1="30" y1={y} x2="230" y2={y} stroke="#f1f5f9" strokeWidth="0.8" />
           </g>
         );
@@ -855,27 +888,30 @@ const PisaHitsSvg = () => (
       
       {/* Draw simplified bars represent Jan to June trend */}
       {/* Block 1 (April): Indian in space = 500, Barcodez = 1200, Loneliness = 1400 */}
-      <rect x="75" y={100 - 20} width="9" height={20} fill="#475569" /> {/* Indian */}
-      <rect x="85" y={100 - 48} width="9" height={48} fill="#94a3b8" /> {/* Barcodez */}
-      <rect x="95" y={100 - 56} width="9" height={56} fill="#cbd5e1" /> {/* Loneliness */}
-      <text x="89" y="109" fontSize="7.5" fontWeight="bold" fill="#334155" textAnchor="middle">אפריל</text>
+      <rect x="75" y={100 - 20} width="9" height={20} fill="url(#indiansGrad)" rx="1" stroke="#581c87" strokeWidth="0.5" />
+      <rect x="85" y={100 - 48} width="9" height={48} fill="url(#barcodezGrad)" rx="1" stroke="#9f1239" strokeWidth="0.5" />
+      <rect x="95" y={100 - 56} width="9" height={56} fill="url(#lonelinessGrad)" rx="1" stroke="#0369a1" strokeWidth="0.5" />
+      <text x="89" y="111" fontSize="8" fontWeight="black" fill="#1e293b" textAnchor="middle">אפריל</text>
 
       {/* Block 2 (June): Indian = 1200, Barcodez = 500, Loneliness = 1900 */}
-      <rect x="145" y={100 - 48} width="9" height={48} fill="#475569" />
-      <rect x="155" y={100 - 20} width="9" height={20} fill="#94a3b8" />
-      <rect x="165" y={100 - 76} width="9" height={76} fill="#cbd5e1" />
-      <text x="159" y="109" fontSize="7.5" fontWeight="bold" fill="#334155" textAnchor="middle">יוני</text>
+      <rect x="145" y={100 - 48} width="9" height={48} fill="url(#indiansGrad)" rx="1" stroke="#581c87" strokeWidth="0.5" />
+      <rect x="155" y={100 - 20} width="9" height={20} fill="url(#barcodezGrad)" rx="1" stroke="#9f1239" strokeWidth="0.5" />
+      <rect x="165" y={100 - 76} width="9" height={76} fill="url(#lonelinessGrad)" rx="1" stroke="#0369a1" strokeWidth="0.5" />
+      <text x="159" y="111" fontSize="8" fontWeight="black" fill="#1e293b" textAnchor="middle">יוני</text>
 
-      <legend className="text-[6px]">
-        <rect x="200" y="10" width="5" height="5" fill="#475569" />
-        <text x="208" y="14" fontSize="5.5" fill="#475569">אינדיאנים</text>
-        <rect x="200" y="18" width="5" height="5" fill="#94a3b8" />
-        <text x="208" y="22" fontSize="5.5" fill="#475569">ברקודז</text>
-        <rect x="200" y="26" width="5" height="5" fill="#cbd5e1" />
-        <text x="208" y="30" fontSize="5.5" fill="#475569">בדידות קיצ'</text>
-      </legend>
+      {/* Repaired Legend to standard SVG group elements with absolute spacing */}
+      <g className="text-[6px]">
+        <rect x="195" y="8" width="5" height="5" fill="url(#indiansGrad)" stroke="#581c87" strokeWidth="0.3" />
+        <text x="203" y="13" fontSize="6.5" fontWeight="bold" fill="#334155" textAnchor="start">אינדיאנים</text>
+        
+        <rect x="195" y="17" width="5" height="5" fill="url(#barcodezGrad)" stroke="#9f1239" strokeWidth="0.3" />
+        <text x="203" y="22" fontSize="6.5" fontWeight="bold" fill="#334155" textAnchor="start">ברקודז</text>
+        
+        <rect x="195" y="26" width="5" height="5" fill="url(#lonelinessGrad)" stroke="#0369a1" strokeWidth="0.3" />
+        <text x="203" y="31" fontSize="6.5" fontWeight="bold" fill="#334155" textAnchor="start">בדידות</text>
+      </g>
     </svg>
-    <span className="text-[9px] text-slate-500 font-bold mt-1">מכירות נבחרות לחודשי אפריל ויוני (שנות PISA)</span>
+    <span className="text-[9.5px] text-slate-500 font-bold mt-1">מכירות נבחרות לחודשי אפריל ויוני (מתוך סקר PISA)</span>
   </div>
 );
 
@@ -1197,7 +1233,7 @@ export default function App() {
             >
               <div>
                 {/* Academic Header in Ministry of Education workbook style */}
-                <div className="-mx-6 md:-mx-[1.5cm] px-6 md:px-[1.5cm] border-b-2 border-slate-905 pb-3 print:pb-1.5 mb-5 print:mb-3 flex justify-between items-center bg-white print:border-b-2 select-none">
+                <div className="-mx-6 md:-mx-[1.5cm] px-6 md:px-[1.5cm] border-b-2 border-slate-900 pb-3 print:pb-1.5 mb-5 print:mb-3 flex justify-between items-center bg-white print:border-b-2 select-none">
                   <div className="text-right">
                     <span className="text-sm md:text-base font-black text-slate-900 leading-none">
                       תחום אי ודאות - כיתה ז'
